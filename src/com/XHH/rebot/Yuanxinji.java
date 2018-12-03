@@ -9,7 +9,7 @@ public class Yuanxinji extends AdvancedRobot{
 	public void run(){
 		double eDist = 0 ; //对方的距离
 		double move = 0; //移动的距离
-		double radarMove = 25; //雷达移动的角度
+//		double radarMove = 25; //雷达移动的角度
 		eDist = 300;
 		init();
 		while(true){

@@ -3,6 +3,7 @@ package com.XHH.rebot;
 import java.awt.Color;
 import java.awt.geom.Rectangle2D;
 
+import com.XHH.rebot.avoid.AvoidWallSystem;
 import com.XHH.rebot.engine.MainEngine;
 import com.XHH.rebot.enums.RobotLocation;
 
@@ -42,7 +43,7 @@ public final class GodTank extends AdvancedRobot {
 	}
 
 	/**
-	 * 初始化操作
+	 * 一些初始化操作，Robocode要求在{@link GodTank#run()}函数中引用
 	 */
 	private void init() {
 		setColors(Color.BLUE, Color.GREEN, Color.RED);
@@ -52,25 +53,27 @@ public final class GodTank extends AdvancedRobot {
 		setAdjustRadarForGunTurn(true);
 	}
 
+	/**
+	 * 启用防撞墙系统。
+	 * <p>
+	 * 这里使用了反射，大量减少冗余代码。
+	 * @param loc 机器人现在处于地图中的位置
+	 * @param degree 机器人车头面对的角度
+	 */
 	private void avoidHitWall(RobotLocation loc, double degree) {
+		AvoidWallSystem sys = null;
 		int headLoc = (int) degree / 45;
-		switch (loc) {
-		case DOWN_LEFT:
-			if (degree) {
-
-			}
+		if(headLoc == 8) {
+			headLoc = 0;
 		}
-//		if (b1) {
-//			if (b2) {
-//				setTurnLeft(trifix);
-//			} else {
-//				setTurnRight(trifix);
-//			}
-//			setBack(leave);
-//		} else {
-//			setTurnLeft(trifix);
-//			setAhead(leave);
-//		}
+		++headLoc;
+		try {
+			Class<?> cls =  Class.forName("import com.XHH.rebot.avoid.wall.AvoidWall"+ headLoc);
+			sys = (AvoidWallSystem)cls.newInstance();
+		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		sys.avoid(loc);
 	}
 
 	private RobotLocation calcWhereRobotBeIn(double x, double y) {
