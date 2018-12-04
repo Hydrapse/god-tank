@@ -3,6 +3,7 @@ package com.XHH.robot.model;
 import java.lang.reflect.Method;
 
 import com.XHH.robot.GodTank;
+import com.XHH.robot.avoid.AvoidWallSystem;
 import com.XHH.robot.enums.RobotLocation;
 
 /**
@@ -18,18 +19,13 @@ public final class RunModel {
 
 	private static boolean flag = true; // 蛇皮走位，左转还是右转
 	private static GodTank robot; // 定义robot的引用，方便调用
-	private static Class<?> cls; // 反射到的类
+	private static Class<? extends AvoidWallSystem> cls = AvoidWallSystem.class; // 反射到的类
 
 	/**
 	 * 初始化RunModel工具类 使用反射配合接下来的反射操作
 	 */
 	public static void init() {
 		robot = GodTank.getInstance();
-		try {
-			cls = Class.forName("com.XHH.robot.avoid.AvoidWallSystem");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 	/**
