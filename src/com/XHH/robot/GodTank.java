@@ -1,6 +1,7 @@
 package com.XHH.robot;
 
 import java.awt.Color;
+import java.util.Random;
 
 import com.XHH.robot.engine.MainEngine;
 import com.XHH.robot.entity.Enemy;
@@ -14,9 +15,7 @@ import robocode.BulletHitEvent;
 import robocode.HitRobotEvent;
 import robocode.RobotDeathEvent;
 import robocode.ScannedRobotEvent;
-/**问题1：碾死人不刷新
- * 问题2：被别人抢人头不刷新
- */
+import robocode.WinEvent;
 
 /**
  * 无可抵挡的机器人，在每一局游戏里都是单例模式。
@@ -106,24 +105,6 @@ public final class GodTank extends AdvancedRobot {
 	}
 
 	/**
-	 * normalRelativeAngle: Returns angle such that -180 < angle <= 180
-	 */
-	public double normalRelativeAngle(double angle) {
-		if (angle > -180 && angle <= 180) {
-			return angle;
-		}
-		double fixedAngle = angle;
-
-		while (fixedAngle <= -180) {
-			fixedAngle += 360;
-		}
-		while (fixedAngle > 180) {
-			fixedAngle -= 360;
-		}
-		return fixedAngle;
-	}
-
-	/**
 	 * 我方机器人死亡的事件实现
 	 * <p>
 	 * 关闭MyEnemy准备下一回合的游戏
@@ -146,6 +127,23 @@ public final class GodTank extends AdvancedRobot {
 	public void onBulletHit(BulletHitEvent e) {
 		if (e.getEnergy() <= 0) {
 			EnemyModel.clear();
+		}
+	}
+	
+	@Override
+	public void onWin(WinEvent e) {
+		System.out.println("The GodTank will destroy heaven and earth!");
+		Random rand = new Random(System.currentTimeMillis());
+		while(true) {
+			Color[] colors = new Color[3];
+			for(int i=0; i<3; ++i) {
+				int R = rand.nextInt(256),G = rand.nextInt(256),B = rand.nextInt(256);
+				float[] color = new float[3];
+				color = Color.RGBtoHSB(R, G, B, color);
+				colors[i] = Color.getHSBColor(color[0], color[1], color[2]);
+			}
+			setColors(colors[0], colors[1], colors[2]);
+			execute();
 		}
 	}
 }

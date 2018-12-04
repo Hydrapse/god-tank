@@ -58,7 +58,6 @@ public final class RunModel {
 		}
 		++headLoc;
 		try {
-			System.out.println("avoid" + headLoc);
 			Method avoid = cls.getMethod("avoid" + headLoc, RobotLocation.class);
 			return (Boolean) avoid.invoke(null, loc);
 		} catch (Exception e) {

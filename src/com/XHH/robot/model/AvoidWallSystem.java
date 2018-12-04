@@ -96,8 +96,8 @@ public final class AvoidWallSystem {
 		case RIGHT:
 			return false;
 		case DOWN_RIGHT:
-			robot.setTurnRight(Math.PI / 2);
-			robot.setAhead(100);
+			robot.setTurnLeft(Math.PI / 2);
+			robot.setBack(100);
 			return true;
 		case DOWN:
 			robot.setTurnRight(Math.PI / 2);
