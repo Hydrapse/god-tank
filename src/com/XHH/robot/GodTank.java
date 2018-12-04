@@ -52,6 +52,7 @@ public final class GodTank extends AdvancedRobot {
 		RunModel.init();
 		ScanModel.init();
 		FireModel.init();
+		EnemyModel.init();
 	}
 
 	/**
@@ -77,7 +78,6 @@ public final class GodTank extends AdvancedRobot {
 			if (e.getName().equals(target.getName()) || (e.getDistance() < target.getDistance())) {
 				EnemyModel.update(new Enemy(e));
 			}
-
 		} else {
 			EnemyModel.update(new Enemy(e));
 		}
@@ -90,12 +90,15 @@ public final class GodTank extends AdvancedRobot {
 	 */
 	@Override
 	public void onHitRobot(HitRobotEvent e) {
+		EnemyModel.update(new Enemy(e));
 		double gunTurnAmt = normalRelativeAngle(e.getBearing() + (getHeading() - getRadarHeading()));
 		turnGunRight(gunTurnAmt);
 		setFire(3);
-		double dis = getDistanceRemaining();
-		double moveDirection = dis / Math.abs(dis);
-		setAhead(1000 * moveDirection);
+		if(getDistanceRemaining() >= 0) {
+			setBack(1000);
+		}else {
+			setAhead(1000);
+		}
 		execute();
 	}
 

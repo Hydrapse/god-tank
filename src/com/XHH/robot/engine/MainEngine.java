@@ -24,7 +24,6 @@ public final class MainEngine {
 	 */
 	public static void mainCycle() {
 		while (true) {
-			long startTime = System.currentTimeMillis();
 			ScanModel.doScanCycle();
 			FireModel.doFireCycle();
 			if (robot.getTurnRemaining() != 0 && robot.getDistanceRemaining() != 0) {
@@ -33,8 +32,6 @@ public final class MainEngine {
 			}
 			RunModel.doRunCycle();
 			robot.execute();
-			long endTime = System.currentTimeMillis();
-			System.out.println((endTime - startTime) + "ms");
 		}
 	}
 
