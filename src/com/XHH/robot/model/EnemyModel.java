@@ -43,7 +43,7 @@ public class EnemyModel {
 	 * @return 是否存在目标敌人
 	 */
 	public static boolean existEnemy() {
-		return nowEnemy == null;
+		return nowEnemy != null;
 	}
 
 	/**
