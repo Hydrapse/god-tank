@@ -30,7 +30,7 @@ public final class ScanModel {
 		if (robot.getRadarTurnRemaining() == 0) {
 			robot.setTurnRadarLeft(360);
 		}
-		if (EnemyModel.existEnemy())
+		if (!EnemyModel.existEnemy())
 			return;
 		Enemy target = EnemyModel.getNowTarget();
 		double radarOffset = Utils
