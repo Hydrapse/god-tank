@@ -12,8 +12,12 @@ import com.XHH.robot.model.ScanModel;
 import robocode.AdvancedRobot;
 import robocode.BulletHitEvent;
 import robocode.HitRobotEvent;
+import robocode.HitWallEvent;
 import robocode.RobotDeathEvent;
 import robocode.ScannedRobotEvent;
+/**问题1：碾死人不刷新
+ * 问题2：被别人抢人头不刷新
+ */
 
 /**
  * 无可抵挡的机器人，在每一局游戏里都是单例模式。
@@ -72,6 +76,8 @@ public final class GodTank extends AdvancedRobot {
 	 * @param e 扫描到机器人事件
 	 */
 	@Override
+	
+
 	public void onScannedRobot(ScannedRobotEvent e) {
 		if (EnemyModel.existEnemy()) {
 			Enemy target = EnemyModel.getNowTarget();
@@ -91,8 +97,6 @@ public final class GodTank extends AdvancedRobot {
 	@Override
 	public void onHitRobot(HitRobotEvent e) {
 		EnemyModel.update(new Enemy(e));
-		double gunTurnAmt = normalRelativeAngle(e.getBearing() + (getHeading() - getRadarHeading()));
-		turnGunRight(gunTurnAmt);
 		setFire(3);
 		if(getDistanceRemaining() >= 0) {
 			setBack(1000);
