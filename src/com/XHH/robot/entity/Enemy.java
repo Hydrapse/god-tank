@@ -2,6 +2,7 @@ package com.XHH.robot.entity;
 
 import com.XHH.robot.GodTank;
 
+import robocode.HitRobotEvent;
 import robocode.ScannedRobotEvent;
 
 /**
@@ -34,6 +35,16 @@ public class Enemy {
 		bearing = e.getBearingRadians();
 		velocity = e.getVelocity();
 		distance = e.getDistance();
+		direction = GodTank.getInstance().getHeadingRadians() + bearing;
+		name = e.getName();
+	}
+	
+	public Enemy(HitRobotEvent e) {
+		super();
+		heading = 0;
+		bearing = e.getBearingRadians();
+		velocity = 0;
+		distance = 0;
 		direction = GodTank.getInstance().getHeadingRadians() + bearing;
 		name = e.getName();
 	}

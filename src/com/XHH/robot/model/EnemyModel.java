@@ -13,6 +13,13 @@ public class EnemyModel {
 	private static Enemy nowEnemy; // 当前的敌人
 
 	/**
+	 * 初始化
+	 */
+	public static void init() {
+		clear();
+	}
+	
+	/**
 	 * 获取当前的敌人信息
 	 * 
 	 * @return 当前的敌人
