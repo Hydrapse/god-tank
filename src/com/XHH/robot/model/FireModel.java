@@ -26,7 +26,7 @@ public final class FireModel {
 	 * 进行一次的开火操作
 	 */
 	public static void doFireCycle() {
-		if (EnemyModel.existEnemy())
+		if (!EnemyModel.existEnemy())
 			return;
 		Enemy target = EnemyModel.getNowTarget();
 		double power = Math.min(3, 400 / target.getDistance());
