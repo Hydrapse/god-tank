@@ -13,7 +13,7 @@ import robocode.ScannedRobotEvent;
  */
 public class Enemy {
 	private double heading; // 敌人面对的方向
-	private double bearing; // 敌人对于你的方位
+	private double bearing; // 敌人对于你的枪管的方位
 	private double velocity; // 敌人的瞬时速率
 	private double distance; // 敌人与你之间的距离
 	private double direction; // 你面对的方位+敌人相对你的方位

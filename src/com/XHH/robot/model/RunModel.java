@@ -3,7 +3,6 @@ package com.XHH.robot.model;
 import java.lang.reflect.Method;
 
 import com.XHH.robot.GodTank;
-import com.XHH.robot.avoid.AvoidWallSystem;
 import com.XHH.robot.enums.RobotLocation;
 
 /**
@@ -59,7 +58,6 @@ public final class RunModel {
 		}
 		++headLoc;
 		try {
-			System.out.println("avoid" + headLoc);
 			Method avoid = cls.getMethod("avoid" + headLoc, RobotLocation.class);
 			return (Boolean) avoid.invoke(null, loc);
 		} catch (Exception e) {
