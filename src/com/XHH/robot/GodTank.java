@@ -12,7 +12,6 @@ import com.XHH.robot.model.ScanModel;
 import robocode.AdvancedRobot;
 import robocode.BulletHitEvent;
 import robocode.HitRobotEvent;
-import robocode.HitWallEvent;
 import robocode.RobotDeathEvent;
 import robocode.ScannedRobotEvent;
 /**问题1：碾死人不刷新
@@ -76,15 +75,15 @@ public final class GodTank extends AdvancedRobot {
 	 * @param e 扫描到机器人事件
 	 */
 	@Override
-	
-
 	public void onScannedRobot(ScannedRobotEvent e) {
-		if (EnemyModel.existEnemy()) {
-			Enemy target = EnemyModel.getNowTarget();
-			if (e.getName().equals(target.getName()) || (e.getDistance() < target.getDistance())) {
+		if (!EnemyModel.existEnemy()) {
+				ScanModel.setScanned(true);
 				EnemyModel.update(new Enemy(e));
-			}
-		} else {
+				return;
+		}
+		Enemy target = EnemyModel.getNowTarget();
+		if (e.getName().equals(target.getName()) || (e.getDistance() < target.getDistance())) {
+			ScanModel.setScanned(true);
 			EnemyModel.update(new Enemy(e));
 		}
 	}

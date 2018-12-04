@@ -3,7 +3,6 @@ package com.XHH.robot.model;
 import java.lang.reflect.Method;
 
 import com.XHH.robot.GodTank;
-import com.XHH.robot.avoid.AvoidWallSystem;
 import com.XHH.robot.enums.RobotLocation;
 
 /**

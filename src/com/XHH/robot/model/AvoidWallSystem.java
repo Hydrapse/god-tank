@@ -1,4 +1,4 @@
-package com.XHH.robot.avoid;
+package com.XHH.robot.model;
 
 import com.XHH.robot.GodTank;
 import com.XHH.robot.enums.RobotLocation;
