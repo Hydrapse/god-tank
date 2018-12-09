@@ -16,6 +16,7 @@ import robocode.HitRobotEvent;
 import robocode.RobotDeathEvent;
 import robocode.ScannedRobotEvent;
 import robocode.WinEvent;
+
 /**
  * 无可抵挡的机器人，在每一局游戏里都是单例模式。
  * 
@@ -75,9 +76,9 @@ public final class GodTank extends AdvancedRobot {
 	@Override
 	public void onScannedRobot(ScannedRobotEvent e) {
 		if (!EnemyModel.existEnemy()) {
-				ScanModel.setScanned(true);
-				EnemyModel.update(new Enemy(e));
-				return;
+			ScanModel.setScanned(true);
+			EnemyModel.update(new Enemy(e));
+			return;
 		}
 		Enemy target = EnemyModel.getNowTarget();
 		if (e.getName().equals(target.getName()) || (e.getDistance() < target.getDistance())) {
@@ -96,19 +97,16 @@ public final class GodTank extends AdvancedRobot {
 		EnemyModel.update(new Enemy(e));
 		ScanModel.setScanned(true);
 		setFire(3);
-		if(getEnergy()-e.getEnergy()<=30 || getEnergy()<=50) {
-			if(e.getBearing() > -90 && e.getBearing() <= 90) {
+		if (getEnergy() - e.getEnergy() <= 30 || getEnergy() <= 50) {
+			if (e.getBearing() > -90 && e.getBearing() <= 90) {
 				setBack(1000);
-			}
-			else {
+			} else {
 				setAhead(1000);
 			}
-		}
-		else{
-			if(e.getBearing() > -90 && e.getBearing() <= 90) {
+		} else {
+			if (e.getBearing() > -90 && e.getBearing() <= 90) {
 				setAhead(1000);
-			}		
-			else {
+			} else {
 				setBack(1000);
 			}
 		}
@@ -130,7 +128,7 @@ public final class GodTank extends AdvancedRobot {
 	/**
 	 * 打中敌方机器人的事件实现
 	 * <p>
-	 * 这里用来判断是否打死，若打死则把MyEnemy关闭
+	 * 这里用来判断是否打死，若打死则把Enemy置空
 	 * 
 	 * @param e 打中敌方机器人事件
 	 */
@@ -140,15 +138,15 @@ public final class GodTank extends AdvancedRobot {
 			EnemyModel.clear();
 		}
 	}
-	
+
 	@Override
 	public void onWin(WinEvent e) {
 		System.out.println("The GodTank will destroy heaven and earth!");
 		Random rand = new Random(System.currentTimeMillis());
-		while(true) {
+		while (true) {
 			Color[] colors = new Color[3];
-			for(int i=0; i<3; ++i) {
-				int R = rand.nextInt(256),G = rand.nextInt(256),B = rand.nextInt(256);
+			for (int i = 0; i < 3; ++i) {
+				int R = rand.nextInt(256), G = rand.nextInt(256), B = rand.nextInt(256);
 				float[] color = new float[3];
 				color = Color.RGBtoHSB(R, G, B, color);
 				colors[i] = Color.getHSBColor(color[0], color[1], color[2]);

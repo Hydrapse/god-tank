@@ -38,7 +38,7 @@ public class Enemy {
 		direction = GodTank.getInstance().getHeadingRadians() + bearing;
 		name = e.getName();
 	}
-	
+
 	public Enemy(HitRobotEvent e) {
 		super();
 		heading = 0;
