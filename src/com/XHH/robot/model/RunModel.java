@@ -14,7 +14,7 @@ import com.XHH.robot.enums.RobotLocation;
  *
  */
 public final class RunModel {
-	private static final int edge = 200; // 自定义的边界长度
+	private static final int edge = 220; // 自定义的边界长度
 
 	private static boolean flag = true; // 蛇皮走位，左转还是右转
 	private static GodTank robot; // 定义robot的引用，方便调用
