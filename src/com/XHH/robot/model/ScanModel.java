@@ -19,7 +19,7 @@ public final class ScanModel {
 	private static boolean isScanned = false;
 	private static GodTank robot; // 运行此模块的机器人
 
-	//getter and setter
+	// getter and setter
 	public static boolean isScanned() {
 		return isScanned;
 	}
@@ -42,7 +42,7 @@ public final class ScanModel {
 		if (robot.getRadarTurnRemaining() == 0) {
 			robot.setTurnRadarLeft(360);
 		}
-		if(!isScanned) {
+		if (!isScanned) {
 			EnemyModel.clear();
 			return;
 		}
@@ -54,7 +54,7 @@ public final class ScanModel {
 		robot.setTurnRadarRight(Math.toDegrees(radarOffset) * 1.1);
 		isScanned = false;
 	}
-	
+
 	/*
 	 * 工具类不可能有实例
 	 */

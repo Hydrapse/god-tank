@@ -12,8 +12,8 @@ import com.XHH.robot.model.ScanModel;
  *
  */
 public final class MainEngine {
-	
-	private static GodTank robot;    //运行此模块的机器人
+
+	private static GodTank robot; // 运行此模块的机器人
 
 	public static void init() {
 		robot = GodTank.getInstance();
@@ -23,20 +23,9 @@ public final class MainEngine {
 	 * 主循环
 	 */
 	public static void mainCycle() {
-		//int i=0;
 		while (true) {
 			ScanModel.doScanCycle();
-			//血量30以下射速减到三之一
-			/*if(robot.getEnergy()<=30 && i==0) {
-				FireModel.doFireCycle();
-				i++;
-			}
-			else if(robot.getEnergy()<=30 && i!=0) {
-				i++;
-				if(i==50)i=0;
-			}
-			else {*/
-				FireModel.doFireCycle();
+			FireModel.doFireCycle();
 			if (robot.getTurnRemaining() != 0 && robot.getDistanceRemaining() != 0) {
 				robot.execute();
 				continue;

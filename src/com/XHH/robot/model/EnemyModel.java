@@ -18,7 +18,7 @@ public class EnemyModel {
 	public static void init() {
 		clear();
 	}
-	
+
 	/**
 	 * 获取当前的敌人信息
 	 * 
