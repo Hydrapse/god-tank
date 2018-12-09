@@ -16,7 +16,6 @@ import robocode.HitRobotEvent;
 import robocode.RobotDeathEvent;
 import robocode.ScannedRobotEvent;
 import robocode.WinEvent;
-
 /**
  * 无可抵挡的机器人，在每一局游戏里都是单例模式。
  * 
@@ -95,11 +94,23 @@ public final class GodTank extends AdvancedRobot {
 	@Override
 	public void onHitRobot(HitRobotEvent e) {
 		EnemyModel.update(new Enemy(e));
+		ScanModel.setScanned(true);
 		setFire(3);
-		if(getDistanceRemaining() >= 0) {
-			setBack(1000);
-		}else {
-			setAhead(1000);
+		if(getEnergy()-e.getEnergy()<=30 || getEnergy()<=50) {
+			if(e.getBearing() > -90 && e.getBearing() <= 90) {
+				setBack(1000);
+			}
+			else {
+				setAhead(1000);
+			}
+		}
+		else{
+			if(e.getBearing() > -90 && e.getBearing() <= 90) {
+				setAhead(1000);
+			}		
+			else {
+				setBack(1000);
+			}
 		}
 		execute();
 	}
