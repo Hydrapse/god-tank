@@ -13,12 +13,20 @@ import robocode.ScannedRobotEvent;
  */
 public class Enemy {
 	private double heading; // 敌人面对的方向
-	private double bearing; // 敌人对于你的枪管的方位
+	private double bearing; // 敌人对于你车头的方位
 	private double velocity; // 敌人的瞬时速率
 	private double distance; // 敌人与你之间的距离
 	private double direction; // 你面对的方位+敌人相对你的方位
-	private String name;
+	private String name; // 敌人的名称
 
+	/**
+	 * 通过参数来构造Enemy对象
+	 * @param heading 敌人面对的方向
+	 * @param bearing 敌人对于你车头的方位
+	 * @param velocity 敌人的瞬时速率
+	 * @param distance 敌人与你之间的距离
+	 * @param name 敌人的名称
+	 */
 	public Enemy(double heading, double bearing, double velocity, double distance, String name) {
 		super();
 		this.heading = heading;
@@ -29,6 +37,10 @@ public class Enemy {
 		this.name = name;
 	}
 
+	/**
+	 * 根据{@link ScannedRobotEvent}对象构造Enemy对象
+	 * @param e ScannedRobotEvent对象
+	 */
 	public Enemy(ScannedRobotEvent e) {
 		super();
 		heading = e.getHeadingRadians();
@@ -39,6 +51,14 @@ public class Enemy {
 		name = e.getName();
 	}
 
+	/**
+	 * 根据{@link HitRobotEvent}对象构造Enemy对象
+	 * <p>
+	 * 需要注意的是，这个事件无法提供敌人面对方向，顺势速率，距离的信息
+	 * <p>
+	 * 因此这里会把它们初始化为0
+	 * @param e HitRobotEvent对象
+	 */
 	public Enemy(HitRobotEvent e) {
 		super();
 		heading = 0;

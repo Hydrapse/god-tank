@@ -32,7 +32,7 @@ public final class RunModel {
 	 */
 	public static void doRunCycle() {
 		double x = robot.getX(), y = robot.getY(), degree = robot.getHeading();
-		if (!RunModel.avoidHitWall(RunModel.calcWhereRobotBeIn(x, y), degree)) {
+		if (!avoidHitWall(calcWhereRobotBeIn(x, y), degree)) {
 			if (flag) {
 				robot.setTurnLeft(270);
 			} else {
